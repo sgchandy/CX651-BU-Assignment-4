@@ -1,0 +1,5 @@
+(1) Compared with the single-process 500x500 run (about 0.63 seconds, with 97% CPU usage), the ten concurrent runs take about 4.6-5.1 seconds each and show about 15-17% CPU usage per process. The jobs compete for processor time, so each takes longer to finish and the CPU usage reported for an individual process is lower.
+
+(2) Compared with the unrestricted concurrent runs (about 4.6-5.1 seconds each), forcing all ten jobs to CPU 0 increases their runtimes to about 6.9 seconds each. Their CPU usage is about 9% per process. Since all jobs share one CPU, they contend more heavily and make slower progress than when the operating system can schedule them across available CPUs.
+
+(3) Compared with the unrestricted concurrent runs, the niceness plot alternates between faster and slower jobs. Even-numbered runs which are assigned high priority (niceness -10) take about 2.1-2.6 seconds and use about 30-38% CPU. The odd-numbered runs which are assigned low priority (niceness +10) take about 4.9-5.3 seconds and use about 14-15% CPU. This suggests the higher-priority jobs receive more processor time and finish sooner.
